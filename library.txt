@@ -1,0 +1,77 @@
+n = int(input("Enter number of members: "))
+
+records = {}
+total = 0
+zero = 0
+all_books = []
+
+# Input records
+for i in range(n):
+    name = input("Enter member name: ")
+    c = int(input("Enter number of books borrowed: "))
+    member_books = []
+
+    for j in range(c):
+        book = input("Enter book name: ")
+        member_books.append(book)
+        all_books.append(book)
+
+    records[name] = member_books
+    total = total + c
+
+    if c == 0:
+        zero = zero + 1
+
+if n > 0:
+    print("Average:", total / n)
+    print("Zero borrowing members:", zero)
+
+    # Find book borrowing frequencies
+    frequency = {}
+
+    for book in all_books:
+        if book in frequency:
+            frequency[book] = frequency[book] + 1
+        else:
+            frequency[book] = 1
+
+    if len(all_books) > 0:
+        highest = all_books[0]
+        lowest = all_books[0]
+        max_count = 0
+        min_count = 1 + len(all_books)
+
+        for book in frequency:
+            if frequency[book] > max_count:
+                max_count = frequency[book]
+                highest = book
+
+            if frequency[book] < min_count:
+                min_count = frequency[book]
+                lowest = book
+
+        print("Most borrowed book:", highest)
+        print("Least borrowed book:", lowest)
+    else:
+        print("No books borrowed")
+
+    # Find mode of borrowing counts
+    mode = 0
+    max_frequency = 0
+
+    for name in records:
+        books_count = len(records[name])
+        freq = 0
+
+        for member in records:
+            if len(records[member]) == books_count:
+                freq = freq + 1
+
+        if freq > max_frequency:
+            max_frequency = freq
+            mode = books_count
+
+    print("Mode of borrow counts:", mode)
+
+else:
+    print("No records available")

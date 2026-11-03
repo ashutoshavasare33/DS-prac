@@ -1,0 +1,80 @@
+# Create Hash Table
+size = 10
+table = [[] for i in range(10)]
+
+
+# Hash Function (Division Method)
+def hash_function(key):
+    index = key % 10
+    return index
+
+
+# Insertion
+def insert(key, value):
+    index = hash_function(key)
+
+    table[index].append([key, value])
+    print("Data inserted successfully")
+
+
+# Searching
+def search(key):
+    index = hash_function(key)
+
+    for i in table[index]:
+        if i[0] == key:
+            print("Value found:", i[1])
+            return
+
+    print("Key not found")
+
+
+# Deletion
+def delete(key):
+    index = hash_function(key)
+
+    for i in table[index]:
+        if i[0] == key:
+            table[index].remove(i)
+            print("Data deleted successfully")
+            return
+
+    print("Key not found")
+
+def display():
+    for i in range(10):
+        print(i,":",table[i])
+
+
+# Main Program
+while True:
+    print("\n1. Insert")
+    print("2. Search")
+    print("3. Delete")
+    print("4.display")
+    print("5. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        key = int(input("Enter key: "))
+        value = input("Enter value: ")
+        insert(key, value)
+
+    elif ch == 2:
+        key = int(input("Enter key to search: "))
+        search(key)
+
+    elif ch == 3:
+        key = int(input("Enter key to delete: "))
+        delete(key)
+
+    elif ch==4:
+        display()
+
+    elif ch == 5:
+        print("Program ended")
+        break
+
+    else:
+        print("Invalid choice")

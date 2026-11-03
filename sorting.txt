@@ -1,0 +1,51 @@
+# Input
+n = int(input("Enter number of employees: "))
+
+salaries = []
+
+for i in range(n):
+    salary = float(input("Enter salary: "))
+    salaries = salaries + [salary]
+
+
+# Create separate lists
+a = []
+b = []
+
+for i in range(n):
+    a = a + [salaries[i]]
+    b = b + [salaries[i]]
+
+
+# Selection Sort
+for i in range(n):
+    min = i
+
+    for j in range(i + 1, n):
+        if a[j] < a[min]:
+            min = j
+
+    temp = a[i]
+    a[i] = a[min]
+    a[min] = temp
+
+print("Selection Sort:", a)
+
+
+# Bubble Sort
+for i in range(n):
+    for j in range(n - 1):
+
+        if b[j] > b[j + 1]:
+            temp = b[j]
+            b[j] = b[j + 1]
+            b[j + 1] = temp
+
+print("Bubble Sort:", b)
+
+
+# Display Top 5 Highest Salaries
+print("Top 5 Highest Salaries:")
+
+for i in range(n - 1, n - 6, -1):
+    print(b[i])
